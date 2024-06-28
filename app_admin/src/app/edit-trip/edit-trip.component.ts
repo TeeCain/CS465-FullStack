@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { TripDataService } from '../services/trip-data.service';
 import { Trip } from '../models/trip';
@@ -14,7 +19,7 @@ import { Trip } from '../models/trip';
 })
 export class EditTripComponent implements OnInit {
   editForm!: FormGroup;
-  trip!: Trip;
+  trip!: any;
   submitted = false;
   message: string = '';
 
@@ -71,7 +76,7 @@ export class EditTripComponent implements OnInit {
       this.tripDataService.updateTrip(this.editForm.value).subscribe({
         next: (value: any) => {
           console.log(value);
-          this.router.navigate(['']);
+          this.router.navigate(['list-trips']);
         },
         error: (error: any) => {
           console.log('Error: ' + error);
